@@ -112,6 +112,7 @@ Running `npm run build` automatically executes `prebuild` (`npm run generate-ico
 | `npm run build` | `vite build` | Runs `prebuild` (icon generation + privacy sync) and builds the production MV3 bundle in `dist/`. |
 | `npm run dev` | `vite` | Starts Vite in development mode for active iteration. |
 | `npm test` | `node --test tests/extension.test.js` | Builds `dist/` via `pretest` and runs automated unit and build-artifact verification tests. |
+| `npm run package` | `node scripts/package-extension.js` | Runs `npm test` (fresh build + tests) and packages `dist/` into `cccs-threat-monitor-v<version>.zip` for Chrome Web Store upload. |
 
 ### 4. Project Structure
 
@@ -121,6 +122,7 @@ cccs-threat-monitor/
 ├── vite.config.js             # Vite + @crxjs/vite-plugin build configuration
 ├── scripts/
 │   ├── generate-icons.js      # Programmatic SVG -> PNG icon generator (16, 48, 128 px)
+│   ├── package-extension.js   # Builds Chrome Web Store .zip archive from dist/
 │   └── sync-privacy.js        # Keeps docs/privacy-policy.md synced with PRIVACY.md
 ├── docs/
 │   └── privacy-policy.md      # GitHub Pages privacy policy copy (synced from PRIVACY.md)
