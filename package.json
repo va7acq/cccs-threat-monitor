@@ -1,0 +1,33 @@
+{
+  "name": "cccs-threat-monitor",
+  "version": "1.0.1",
+  "description": "Manifest V3 Chrome extension monitoring the Canadian Centre for Cyber Security (CCCS) Atom feed with keyword watchlists and full-text notifications.",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/va7acq/cccs-threat-monitor.git"
+  },
+  "homepage": "https://github.com/va7acq/cccs-threat-monitor#readme",
+  "bugs": {
+    "url": "https://github.com/va7acq/cccs-threat-monitor/issues"
+  },
+  "scripts": {
+    "generate-icons": "node scripts/generate-icons.js",
+    "sync-privacy": "node scripts/sync-privacy.js",
+    "prebuild": "npm run generate-icons && npm run sync-privacy",
+    "dev": "vite",
+    "build": "vite build",
+    "pretest": "npm run build",
+    "test": "node --test tests/extension.test.js"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^4.5.0"
+  },
+  "devDependencies": {
+    "@crxjs/vite-plugin": "^2.0.0-beta.28",
+    "@resvg/resvg-js": "^2.6.2",
+    "vite": "^5.4.11"
+  }
+}

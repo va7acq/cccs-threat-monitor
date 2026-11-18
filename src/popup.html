@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>CCCS Threat Monitor</title>
+    <link rel="stylesheet" href="./popup.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- Header -->
+      <header class="header">
+        <div class="brand">
+          <img
+            src="/icons/icon48.png"
+            srcset="/icons/icon48.png 1x, /icons/icon128.png 2x"
+            width="34"
+            height="34"
+            alt="CCCS Threat Monitor Logo"
+            class="brand-logo"
+          />
+          <div class="brand-text">
+            <h1>CCCS Threat Monitor</h1>
+            <p>Canadian Cyber Security Alerts &amp; Advisories</p>
+          </div>
+        </div>
+      </header>
+
+      <!-- Status Bar & Manual Check -->
+      <section class="status-bar" aria-label="Feed check status">
+        <div class="status-info">
+          <div class="status-row">
+            <span id="status-badge" class="status-pill status-idle">Pending</span>
+            <span id="last-check-time" class="status-time">Last check: Never</span>
+          </div>
+          <p id="status-error" class="status-error" hidden></p>
+        </div>
+        <button type="button" id="check-now-btn" class="btn btn-primary">
+          Check Now
+        </button>
+      </section>
+
+      <!-- Polling Interval Presets -->
+      <section class="card compact-card">
+        <div class="setting-row">
+          <label for="interval-select" class="section-label">
+            Check Frequency
+          </label>
+          <select id="interval-select" class="select-input">
+            <option value="5">Every 5 minutes</option>
+            <option value="15" selected>Every 15 minutes (Default)</option>
+            <option value="30">Every 30 minutes</option>
+            <option value="60">Every 1 hour</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- Keyword Watchlist Manager -->
+      <section class="card">
+        <div class="card-header">
+          <h2 class="section-title">Keyword Watchlist</h2>
+          <span id="keyword-stats" class="meta-count"></span>
+        </div>
+
+        <form id="keyword-form" class="keyword-form" autocomplete="off">
+          <input
+            type="text"
+            id="keyword-input"
+            class="text-input"
+            placeholder="Add keyword or -exclude (e.g. RHEL, -macOS)"
+            aria-label="Add keyword or negative exclusion"
+            maxlength="80"
+          />
+          <button type="submit" id="add-keyword-btn" class="btn btn-secondary">
+            Add
+          </button>
+        </form>
+        <p class="helper-hint">
+          Matches advisory titles. Prefix with <code>-</code> to exclude whole words.
+        </p>
+
+        <div id="keyword-pills" class="pills-container" role="list"></div>
+      </section>
+
+      <!-- Recent Matches Feed -->
+      <section class="card matches-card">
+        <div class="card-header">
+          <h2 class="section-title">Recent Matches</h2>
+          <span id="matches-count" class="meta-count">Last 10</span>
+        </div>
+
+        <div id="matches-list" class="matches-list"></div>
+      </section>
+    </div>
+
+    <script type="module" src="./popup.js"></script>
+  </body>
+</html>

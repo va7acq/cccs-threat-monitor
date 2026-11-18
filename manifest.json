@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "CCCS Threat Monitor",
+  "version": "1.0.1",
+  "description": "Monitors the Canadian Centre for Cyber Security (CCCS) Atom feed for keyword matches with unread badges and full-text alerts.",
+  "permissions": [
+    "alarms",
+    "notifications",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.cyber.gc.ca/*"
+  ],
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "src/popup.html",
+    "default_title": "CCCS Threat Monitor",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self';"
+  }
+}
